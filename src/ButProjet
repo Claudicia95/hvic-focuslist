@@ -1,0 +1,5 @@
+index.js : Contient l'état global et gère la liste des tâches.
+TaskList : Affiche les tâches sous forme de tableau ou liste.
+TaskForm : Formulaire pour ajouter/éditer une tâche.
+TaskStats : Composant pour afficher les statistiques et les graphiques.
+CalendarView : Affiche les tâches sur un calendrier (par jour ou semaine).
