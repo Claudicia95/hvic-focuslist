@@ -5,6 +5,7 @@ import Home from './pages/Home/index.jsx';
 import Navbar from './pages/Navbar/index.jsx';
 import Login from './pages/login/index.jsx';
 import SignUp from './pages/SignUp/index.jsx';
+import Footer from './pages/Footer/index.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path="/Login" element={<Login/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
       </Routes>
+      <Footer/>
     </Router>
   </React.StrictMode>
 );

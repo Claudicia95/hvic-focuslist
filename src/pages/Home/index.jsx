@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import desk from '../../assets/desk.webp';
+import flat from '../../assets/flat.jpg'
 
 // Styles CSS-in-JS
 const styles = {
@@ -100,10 +101,17 @@ export default function Home() {
   );
 }
  const textContainer={
-   backgroundColor: 'yellow',
-  height: '50vh',
-  width: '100%',
-  position: 'relative', // Pour utiliser le positionnement absolu à l'intérieur
+  backgroundImage: `url(${flat})`, // Image en arrière-plan
+  backgroundSize: 'cover', // L'image couvre tout l'espace
+  backgroundPosition: 'center', // Centre l'image
+  backgroundRepeat: 'no-repeat',
+  height: '90vh', // Hauteur égale à la taille de l'écran
+  display: 'flex',
+  flexDirection: 'column', // Alignement vertical des éléments
+  justifyContent: 'center', // Centrage vertical
+  alignItems: 'center', // Centrage horizontal
+  position: 'relative',
+  textAlign: 'center',
  };
 
 const TexteBox={
