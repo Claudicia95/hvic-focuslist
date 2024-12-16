@@ -1,65 +1,117 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import desk from '../../assets/desk.webp';
 
 // Styles CSS-in-JS
 const styles = {
-  DownNav: {
-    textAlign: 'center',  // Aligne le texte au centre
-    marginTop: '20px',    // Espacement au-dessus du composant
-    padding: '10px',      // Ajoute un padding interne pour l'espacement
-    backgroundColor: '#f8f9fa',  // Couleur de fond légère
-    border: '1px solid #ddd',    // Bordure légère pour un encadrement subtil
+  homeContainer: {
+    backgroundImage: `url(${desk})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    textAlign: 'center',
   },
   h1Strong: {
-    fontSize: '1.5rem',   // Taille de police pour le texte en gras
+    fontSize: '2rem',
+    color: '#000000',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
   },
   p: {
-    fontSize: '1rem',      // Taille de police pour le texte simple
-    color: '#6c757d',      // Couleur de texte légère
+    fontSize: '1.2rem',
+    color: '#000000',
+    marginTop: '10px',
   },
-  h3: {
-    fontSize: '1rem',      // Taille de police pour les liens
-    margin: '10px 10px',  // Espacement horizontal
-    padding: '10px 20px', // Padding pour l'intérieur des bordures circulaires
-    borderRadius: '50px', // Bordure circulaire
-    display: 'inline-block', // Pour afficher les éléments sur la même ligne
-    textDecoration: 'none',  // Retire le soulignement
-    transition: 'background-color 0.3s', // Animation de transition
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    marginTop: '20px',
+  },
+  button: {
+    fontSize: '1.1rem',
+    padding: '10px 30px',
+    borderRadius: '30px',
+    textDecoration: 'none',
+    color: '#fff',
     cursor: 'pointer',
+    transition: 'all 0.3s ease',
   },
-  h3Orange: {
-    backgroundColor: '#FFA500',  // Bordure orange pour "Créer un Compte Gratuit"
-    color: '#fff',                // Texte blanc pour contraste
+  orangeButton: {
+    backgroundColor: '#FFA500',
   },
-  h3BlueNight: {
-    backgroundColor: '#2C3E50',  // Bordure bleu nuit pour "Essaie Gratuit"
-    color: '#fff',                // Texte blanc pour contraste
-  },
-  h3HoverOrange: {
-    backgroundColor: '#FF8C00',  // Changement de couleur pour "Créer un Compte Gratuit"
-  },
-  h3HoverBlueNight: {
-    backgroundColor: '#34495E',  // Changement de couleur pour "Essaie Gratuit"
+  blueButton: {
+    backgroundColor: '#2C3E50',
   },
 };
 
 export default function Home() {
+  // États pour gérer la couleur des boutons
+  const [hoveredButton, setHoveredButton] = useState(null);
+
   return (
-    <div style={styles.DownNav}>
-      <h1>
-        <strong style={styles.h1Strong}>HVIC-FocusList ||</strong>
+    <div>
+    <div style={styles.homeContainer}>
+      {/* Titre principal */}
+      <h1 style={styles.h1Strong}>
+        HVIC-FocusList ||
         <p style={styles.p}>"Organisez vos tâches, atteignez vos objectifs."</p>
       </h1>
-      <Link to="/signup">
-        <h3 style={{ ...styles.h3, ...styles.h3Orange }} className="link">
-          Créer un Compte Gratuit
-        </h3>
-      </Link>
-      <Link to="/test">
-        <h3 style={{ ...styles.h3, ...styles.h3BlueNight }} className="link">
-          Essaie Gratuit
-        </h3>
-      </Link>
+
+      {/* Conteneur des boutons */}
+      <div style={styles.buttonContainer}>
+        <Link
+          to="/signup"
+          style={{...styles.button,...styles.orangeButton,color: hoveredButton === 'orange' ? '#000000' : '#fff',}}
+          onMouseOver={() => setHoveredButton('orange')}
+          onMouseOut={() => setHoveredButton(null)}
+        >
+          Créer un compte Gratuit
+        </Link>
+
+        <Link
+          to="/test"
+          style={{...styles.button,...styles.blueButton,color: hoveredButton === 'blue' ? '#000000' : '#fff', }}
+          onMouseOver={() => setHoveredButton('blue')}
+          onMouseOut={() => setHoveredButton(null)}
+        >
+          Essai Gratuit
+        </Link>
+      </div>
+    </div>
+
+    <div style={textContainer}>
+    <div style={TexteBox}>
+        <h1><strong>Adaptez l'outil à vos besoins</strong></h1>
+      <h2><i>HVIC-FocusList est conçue pour s’adapter à tous les profils :</i></h2>
+
+     <p><li><strong>Pour les étudiants :</strong>Planifiez vos révisions, vos cours et vos examens sans stress.</li></p>
+     <p><li><strong>Pour les professionnels :</strong>Gérez vos projets, vos rendez-vous et vos deadlines avec précision.</li></p>
+     <p><li><strong>Pour les particuliers :</strong>Organisez vos courses, vos rendez-vous et vos activités familiales en un clic.</li></p>
+     <p><li><strong>Cette flexibilité fait de HVIC-FocusList l'outil indispensable pour toutes les personnes cherchant à mieux gérer leur temps.</strong></li></p>
+    </div>    
+    </div>
     </div>
   );
+}
+ const textContainer={
+   backgroundColor: 'yellow',
+  height: '50vh',
+  width: '100%',
+  position: 'relative', // Pour utiliser le positionnement absolu à l'intérieur
+ };
+
+const TexteBox={
+  position: 'absolute',
+  bottom: '0', // Fixe le texte en bas de la boîte
+  left: '50%', // Centre horizontalement le texte
+  transform: 'translateX(-50%)', // Center le texte en horizontal avec un décalage
+  textAlign: 'center', // Alignement horizontal
+  lineHeight: '1.5', // Hauteur de ligne ajustée pour la lisibilité
+  width: '80%', // Ajuste la largeur si nécessaire
 }

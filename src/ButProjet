@@ -3,3 +3,5 @@ TaskList : Affiche les tâches sous forme de tableau ou liste.
 TaskForm : Formulaire pour ajouter/éditer une tâche.
 TaskStats : Composant pour afficher les statistiques et les graphiques.
 CalendarView : Affiche les tâches sur un calendrier (par jour ou semaine).
+
+

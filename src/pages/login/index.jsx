@@ -13,7 +13,7 @@ const styles = {
   },
   FormLogin: {
     position: 'relative',
-    background: '#2E8B57', // Vert pour le formulaire
+    background: 'green', // Vert pour le formulaire
     width: '400px',
     padding: '30px',
     borderRadius: '10px',
@@ -104,7 +104,7 @@ function Login() {
           </div>
 
           <div style={{ position: 'relative', marginBottom: '20px' }}>
-            <input
+            <input 
               style={styles.InputBox}
               type="password"
               placeholder="Mot de passe"
