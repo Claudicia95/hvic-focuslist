@@ -52,26 +52,19 @@ function Navbar() {
 
       {/* Navigation principale */}
       <ul style={navGroupStyle}>
-        <NavItem to="/" customStyle={{ fontSize: '1.2rem' }}>
-          Accueil
-        </NavItem>
+        <NavItem to="/" customStyle={{ fontSize: '1.2rem' }}>Accueil</NavItem>
 
-        <NavItem to="/about" customStyle={{ fontSize: '1.2rem' }}>
-          Aide
-        </NavItem>
+        <NavItem to="/about" customStyle={{ fontSize: '1.2rem' }}>Aide</NavItem>
+
+        <NavItem to="/userpro" customStyle={{backgroundColor:'red', fontSize: '1.3rem', color:'back',
+                                              borderRadius:'30px',
+                                              padding: '9px 20px'
+                                            }}>Pro</NavItem>
         
-        <NavItem
-          to="/test"
-          customStyle={{
-            backgroundColor: '#2C3E50',
-            borderRadius: '30px',
-            fontSize: '1.1rem',
-            color: 'white',
-            padding: '8px 20px',
-          }}
-        >
-          Essai Gratuit
-        </NavItem>
+        <NavItem to="/test" customStyle={{backgroundColor: '#2C3E50',borderRadius: '30px',
+                                          fontSize: '1.1rem',
+                                          color: 'white',
+                                          padding: '8px 20px',}}> Essai Gratuit</NavItem>
       </ul>
 
       {/* Navigation secondaire */}

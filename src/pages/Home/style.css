@@ -1,0 +1,89 @@
+/* Conteneur principal */
+.textContainer {
+    display: flex; /* Flexbox pour alignement horizontal */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centrage vertical */
+    background: white;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box; /* Inclut les bordures dans les dimensions */
+  }
+  
+  /* Carrousel d'images */
+  #carousseL {
+    width: 50%; /* Moitié de l'écran */
+    overflow: hidden; /* Cacher les débordements */
+    position: relative;
+  }
+  
+  .styleImage {
+    display: flex;
+    animation: mesImages 10s infinite linear; /* Animation plus fluide */
+  }
+  
+  .styleImage img {
+    height: 80vh; /* Taille ajustée des images */
+    object-fit: cover; /* Image bien cadrée */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Ombre légère */
+  }
+  
+  /* TexteBox */
+  .TexteBox {
+    width: 45%; /* Taille réduite pour l'équilibre */
+    background-color: rgba(255, 255, 255, 0.95); /* Fond blanc avec légère opacité */
+    padding: 25px; /* Espacement interne */
+    border-radius: 12px; /* Bords arrondis */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Ombre moderne */
+    color: #333; /* Couleur sombre du texte */
+    line-height: 1.8; /* Amélioration de l'espacement des lignes */
+    font-size: 1.1rem;
+    transition: transform 0.3s ease-in-out; /* Effet au survol */
+  }
+  
+  /* Effet au survol */
+  .TexteBox:hover {
+    transform: translateY(-5px); /* Légère remontée au survol */
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Titres du TexteBox */
+  .TexteBox h1 {
+    color: #2c3e50; /* Couleur principale */
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .TexteBox h2 {
+    color: #4ca1af; /* Couleur secondaire */
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .TexteBox li {
+    margin-bottom: 12px; /* Espacement entre listes */
+    color: #555; /* Gris léger */
+  }
+  
+  .TexteBox strong {
+    color: #e67e22; /* Accent de couleur orangé */
+  }
+  
+  /* Animation carrousel */
+  @keyframes mesImages {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-640px);
+    }
+    50% {
+      transform: translateX(-1280px);
+    }
+    75% {
+      transform: translateX(-1920px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  

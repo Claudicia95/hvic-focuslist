@@ -6,6 +6,7 @@ import Navbar from './pages/Navbar/index.jsx';
 import Login from './pages/login/index.jsx';
 import SignUp from './pages/SignUp/index.jsx';
 import Footer from './pages/Footer/index.jsx';
+import Result from './components/Result/index.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login/>}/>
         <Route path="/SignUp" element={<SignUp/>}/>
+        <Route path='/test' element={<Result/>}/>
       </Routes>
       <Footer/>
     </Router>

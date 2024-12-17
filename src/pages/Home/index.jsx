@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import desk from '../../assets/desk.webp';
 import flat from '../../assets/flat.jpg'
+import topview from '../../assets/topview.jpg'
+import lovely from '../../assets/lovely.webp'
+import transparent from '../../assets/transparent.jpg'
+import '../Home/style.css'
 
 // Styles CSS-in-JS
 const styles = {
@@ -86,10 +90,20 @@ export default function Home() {
       </div>
     </div>
 
-    <div style={textContainer}>
-    <div style={TexteBox}>
+    <div className='textContainer'>
+     <div id='carousseL'>
+      <div className='styleImage'>
+        <img style={{height: '90vh',}} src={lovely} alt='todolist' />
+        <img style={{height: '90vh',}} src={flat} alt='todolist' />
+        <img style={{height: '90vh',}} src={topview} alt='todolist' />
+        <img style={{height: '90vh',}} src={transparent} alt='todolist' />
+    </div>
+      
+      </div>
+    
+    <div className='TexteBox'>
         <h1><strong>Adaptez l'outil à vos besoins</strong></h1>
-      <h2><i>HVIC-FocusList est conçue pour s’adapter à tous les profils :</i></h2>
+        <h2><i>HVIC-FocusList est conçue pour s’adapter à tous les profils :</i></h2>
 
      <p><li><strong>Pour les étudiants :</strong>Planifiez vos révisions, vos cours et vos examens sans stress.</li></p>
      <p><li><strong>Pour les professionnels :</strong>Gérez vos projets, vos rendez-vous et vos deadlines avec précision.</li></p>
@@ -99,27 +113,4 @@ export default function Home() {
     </div>
     </div>
   );
-}
- const textContainer={
-  backgroundImage: `url(${flat})`, // Image en arrière-plan
-  backgroundSize: 'cover', // L'image couvre tout l'espace
-  backgroundPosition: 'center', // Centre l'image
-  backgroundRepeat: 'no-repeat',
-  height: '90vh', // Hauteur égale à la taille de l'écran
-  display: 'flex',
-  flexDirection: 'column', // Alignement vertical des éléments
-  justifyContent: 'center', // Centrage vertical
-  alignItems: 'center', // Centrage horizontal
-  position: 'relative',
-  textAlign: 'center',
- };
-
-const TexteBox={
-  position: 'absolute',
-  bottom: '0', // Fixe le texte en bas de la boîte
-  left: '50%', // Centre horizontalement le texte
-  transform: 'translateX(-50%)', // Center le texte en horizontal avec un décalage
-  textAlign: 'center', // Alignement horizontal
-  lineHeight: '1.5', // Hauteur de ligne ajustée pour la lisibilité
-  width: '80%', // Ajuste la largeur si nécessaire
 }
