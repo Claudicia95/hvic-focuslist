@@ -28,8 +28,7 @@ function Footer() {
 
       {/* Section Copyright */}
       <div style={footerStyles.copyright}>
-        <div>Copyright © 2024</div>
-        <div>HVIC-FocusList</div>
+        <p>© 2024   HVIC-FocusList</p>
       </div>
     </div>
   );

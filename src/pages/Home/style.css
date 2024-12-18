@@ -18,7 +18,7 @@
   
   .styleImage {
     display: flex;
-    animation: mesImages 10s infinite linear; /* Animation plus fluide */
+    animation: mesImages 15s infinite linear; /* Animation plus fluide */
   }
   
   .styleImage img {

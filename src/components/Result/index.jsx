@@ -4,44 +4,42 @@ import { FaEdit } from "react-icons/fa";
 import { IoIosAdd } from "react-icons/io";
 import { DetailsFocusList } from "../DetailsFocusList";
 
-// Styles JSS améliorés
 const styles = {
   container: {
     padding: "20px",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#f4f5f7",
     minHeight: "100vh",
-    fontFamily: "'Roboto', sans-serif",
-    animation: "fadeIn 0.5s ease-in-out",
+    fontFamily: "'Poppins', sans-serif",
+    color: "#333",
   },
   header: {
     textAlign: "center",
-    marginBottom: "30px",
-    color: "#333",
-    fontSize: "2rem",
-    textTransform: "uppercase",
-    letterSpacing: "2px",
+    marginBottom: "20px",
+    color: "#2c3e50",
+    fontSize: "2.5rem",
+    fontWeight: "bold",
   },
   table: {
     width: "100%",
     borderCollapse: "collapse",
-    marginBottom: "30px",
-    animation: "slideUp 0.8s ease",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    borderRadius: "8px",
+    overflow: "hidden",
   },
   th: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#3498db",
     color: "#fff",
-    padding: "10px",
+    padding: "12px",
     textAlign: "center",
     fontWeight: "600",
+    textTransform: "uppercase",
   },
   td: {
     padding: "10px",
-    border: "1px solid #ddd",
+    borderBottom: "1px solid #ddd",
     textAlign: "center",
+    backgroundColor: "#fff",
     transition: "background-color 0.3s ease",
-    "&:hover": {
-      backgroundColor: "#f1f1f1",
-    },
   },
   buttonsContainer: {
     display: "flex",
@@ -49,68 +47,74 @@ const styles = {
     gap: "10px",
   },
   button: {
-    color: "#fff",
+    padding: "8px 12px",
+    borderRadius: "6px",
     border: "none",
-    padding: "8px",
-    borderRadius: "4px",
     cursor: "pointer",
+    transition: "transform 0.2s, background-color 0.3s",
     display: "flex",
     alignItems: "center",
-    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
-    transition: "transform 0.3s ease, background-color 0.3s ease",
-    "&:hover": {
-      transform: "translateY(-3px)",
-      backgroundColor: "#0056b3",
-    },
-  },
-  iconEdit: {
-    marginRight: "5px",
-    color: "yellow",
-  },
-  iconDelete: {
-    marginRight: "5px",
-    color: "red",
-  },
-  iconAdd: {
-    marginRight: "5px",
-    color: "green",
+    gap: "6px",
+    fontWeight: "500",
   },
   inputField: {
-    marginBottom: "15px",
-    padding: "10px",
     width: "100%",
+    padding: "10px",
     border: "1px solid #ddd",
-    borderRadius: "4px",
-    transition: "box-shadow 0.3s ease, border-color 0.3s ease",
-    "&:focus": {
-      borderColor: "#007bff",
-      boxShadow: "0 0 8px rgba(0, 123, 255, 0.3)",
-      outline: "none",
-    },
+    borderRadius: "6px",
+    marginBottom: "15px",
+    transition: "box-shadow 0.3s, border-color 0.3s",
   },
   addContainer: {
     display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: "10px",
+    flexDirection: "column",
+    gap: "15px",
+    marginTop: "20px",
+  },
+  addButton: {
+    backgroundColor: "#3498db",
+    color: "#fff",
+    padding: "8px 12px",
+    borderRadius: "6px",
+    border: "none",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+    textAlign: "center",
   },
   editModal: {
     backgroundColor: "#fff",
     padding: "20px",
-    borderRadius: "4px",
-    boxShadow: "0 10px 15px rgba(0, 0, 0, 0.3)",
-    position: "relative",
+    borderRadius: "8px",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     zIndex: 1000,
-    width: "300px",
-    margin: "0 auto",
-    animation: "scaleIn 0.3s ease-in-out",
+    width: "90%",
+    maxWidth: "400px",
   },
 };
 
 function Result() {
-  const [tasks, setTasks] = useState(DetailsFocusList);
-  const [newTask, setNewTask] = useState({ title: "", description: "", date: "", heure: "" });
+  const [tasks, setTasks] = useState(
+    DetailsFocusList.map((task) => ({ ...task, isCompleted: false }))
+  );
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    date: "",
+    heure: "",
+    isCompleted: false,
+  });
   const [editTask, setEditTask] = useState(null);
+
+  const handleToggleStatus = (id) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+    );
+    setTasks(updatedTasks);
+  };
 
   const handleDelete = (id) => {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cette tâche?")) {
@@ -136,7 +140,13 @@ function Result() {
     if (newTask.title && newTask.description && newTask.date && newTask.heure) {
       const newTaskWithId = { id: Date.now(), ...newTask };
       setTasks([...tasks, newTaskWithId]);
-      setNewTask({ title: "", description: "", date: "", heure: "" });
+      setNewTask({
+        title: "",
+        description: "",
+        date: "",
+        heure: "",
+        isCompleted: false,
+      });
     } else {
       alert("Veuillez remplir tous les champs.");
     }
@@ -153,23 +163,67 @@ function Result() {
             <th style={styles.th}>Description</th>
             <th style={styles.th}>Date</th>
             <th style={styles.th}>Heure</th>
+            <th style={styles.th}>Actions</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((item) => (
             <tr key={item.id}>
               <td style={styles.td}>{item.title}</td>
-              <td style={styles.td}>{item.Statut}</td>
-              <td style={styles.td}>{item.description}</td>
-              <td style={styles.td}>{item.date}</td>
-              <td style={styles.td}>{item.heure}</td>
+              <td style={styles.td}>
+                <button
+                  style={{
+                    ...styles.button,
+                    backgroundColor: item.isCompleted ? "green" : "gray",
+                  }}
+                  onClick={() => handleToggleStatus(item.id)}
+                >
+                  {item.isCompleted ? "Terminé" : "Non terminé"}
+                </button>
+              </td>
+              <td style={styles.td}>
+                {editTask && editTask.id === item.id ? (
+                  <input
+                    type="text"
+                    value={editTask.description}
+                    onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
+                    style={styles.inputField}
+                  />
+                ) : (
+                  item.description
+                )}
+              </td>
+              <td style={styles.td}>
+                {editTask && editTask.id === item.id ? (
+                  <input
+                    type="date"
+                    value={editTask.date}
+                    onChange={(e) => setEditTask({ ...editTask, date: e.target.value })}
+                    style={styles.inputField}
+                  />
+                ) : (
+                  item.date
+                )}
+              </td>
+              <td style={styles.td}>
+                {editTask && editTask.id === item.id ? (
+                  <input
+                    type="time"
+                    value={editTask.heure}
+                    onChange={(e) => setEditTask({ ...editTask, heure: e.target.value })}
+                    style={styles.inputField}
+                  />
+                ) : (
+                  item.heure
+                )}
+              </td>
               <td style={styles.td}>
                 <div style={styles.buttonsContainer}>
                   <button style={styles.button} onClick={() => handleEdit(item.id)}>
-                    <FaEdit style={styles.iconEdit} />
+                    <FaEdit />
                   </button>
                   <button style={styles.button} onClick={() => handleDelete(item.id)}>
-                    <MdDelete style={styles.iconDelete} />
+                    <MdDelete />
                   </button>
                 </div>
               </td>
@@ -178,36 +232,34 @@ function Result() {
         </tbody>
       </table>
       <div style={styles.addContainer}>
-        <div>
-          <input
-            type="text"
-            placeholder="Titre"
-            style={styles.inputField}
-            value={newTask.title}
-            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Description"
-            style={styles.inputField}
-            value={newTask.description}
-            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-          />
-          <input
-            type="date"
-            style={styles.inputField}
-            value={newTask.date}
-            onChange={(e) => setNewTask({ ...newTask, date: e.target.value })}
-          />
-          <input
-            type="time"
-            style={styles.inputField}
-            value={newTask.heure}
-            onChange={(e) => setNewTask({ ...newTask, heure: e.target.value })}
-          />
-        </div>
-        <button style={styles.button} onClick={handleAdd}>
-          <IoIosAdd style={styles.iconAdd} /> Ajouter
+        <input
+          type="text"
+          placeholder="Titre"
+          style={styles.inputField}
+          value={newTask.title}
+          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          style={styles.inputField}
+          value={newTask.description}
+          onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+        />
+        <input
+          type="date"
+          style={styles.inputField}
+          value={newTask.date}
+          onChange={(e) => setNewTask({ ...newTask, date: e.target.value })}
+        />
+        <input
+          type="time"
+          style={styles.inputField}
+          value={newTask.heure}
+          onChange={(e) => setNewTask({ ...newTask, heure: e.target.value })}
+        />
+        <button style={styles.addButton} onClick={handleAdd}>
+          <IoIosAdd /> Ajouter
         </button>
       </div>
       {editTask && (
@@ -219,6 +271,25 @@ function Result() {
             style={styles.inputField}
             value={editTask.title}
             onChange={(e) => setEditTask({ ...editTask, title: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            style={styles.inputField}
+            value={editTask.description}
+            onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
+          />
+          <input
+            type="date"
+            style={styles.inputField}
+            value={editTask.date}
+            onChange={(e) => setEditTask({ ...editTask, date: e.target.value })}
+          />
+          <input
+            type="time"
+            style={styles.inputField}
+            value={editTask.heure}
+            onChange={(e) => setEditTask({ ...editTask, heure: e.target.value })}
           />
           <button style={styles.button} onClick={handleEditSubmit}>
             Enregistrer
